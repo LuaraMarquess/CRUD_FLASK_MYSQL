@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    {{ page.title }}
+{% endblock %}
+
+{% block content %}
+    <h2>Cadastrar contato:</h2>
+
+    {% if page.success_message %}  
+        <p id="successMessage" class="success-message">{{ page.success_message }}</p>
+    {% endif %}
+
+    <div class="container mt-5">
+        <form method="POST">
+            <div class="mb-3">
+                <label for="nome" class="form-label">Nome:</label>
+                <input type="text" class="form-control form-control-small" id="nome" name="nome" placeholder="Digite o nome do contato" required>
+            </div>
+            <div class="mb-3">
+                <label for="telefone_residencial" class="form-label">Telefone Residêncial:</label>
+                <input type="text" class="form-control form-control-small" id="telefone_residencial" name="telefone_residencial" required>
+            </div>
+            <div class="mb-3">
+                <label for="telefone_celular" class="form-label">Telefone Celular:</label>
+                <input type="text" class="form-control form-control-small" id="telefone_celular" name="telefone_celular" required>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email:</label>
+                <input type="email" class="form-control form-control-small" id="email" name="email" required>
+            </div>
+            <button type="submit" class="btn btn-success">CADASTRAR</button>
+        </form>
+    </div>
+
+    <script>
+        // Verifica se há uma mensagem de sucesso
+        const successMessage = document.getElementById('successMessage');
+        if (successMessage) {
+            // Define um tempo após o qual a mensagem será ocultada (exemplo: 5 segundos)
+            setTimeout(() => {
+                successMessage.style.opacity = '0'; // Aplica a transição de opacidade
+                setTimeout(() => {
+                    successMessage.style.display = 'none'; // Remove o elemento do DOM após a transição
+                }, 1000); // Tempo da transição
+            }, 5000); // Tempo antes de ocultar (5 segundos)
+        }
+    </script>
+{% endblock %}
